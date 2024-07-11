@@ -70,7 +70,7 @@ export function Avatar({ author, size }: { author: string; size: number }) {
   return (
     <div>
       <div
-        className={`relative inline-flex items-center justify-center w-${size} h-${size} overflow-hidden rounded-full ${avatarColorClass}`}
+      className={`relative inline-flex items-center justify-center w-${size} h-${size} overflow-hidden rounded-full ${avatarColorClass}`}
       >
         <span className="text-sm text-white">{first}</span>
       </div>
