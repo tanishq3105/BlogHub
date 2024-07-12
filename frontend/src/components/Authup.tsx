@@ -38,8 +38,8 @@ export const Authup = () => {
 
           <div className="text-l text-slate-400">
             Already have and account?
-            <a href="/signin" className="text-slate-600">
-              Signin
+            <a href="/signin" className="text-indigo-600">
+              Sign In
             </a>
           </div>
           <div className="flex flex-col">
@@ -73,7 +73,7 @@ export const Authup = () => {
               }))}}
             />
             <div className="flex justify-center mt-5">
-              <button className="flex items-center justify-center border border-black h-10 px-32 bg-black text-white rounded-sm"
+              <button className="flex items-center justify-center border border-black h-10 px-32 bg-indigo-600 text-white rounded-sm"
               onClick={handleSubmit}>
                 Sign up
               </button>
