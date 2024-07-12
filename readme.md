@@ -7,6 +7,7 @@ Welcome to our Blogging Website! This project is a responsive and user-friendly 
 - **Create Blogs**: Users can create new blogs with rich content.
 - **Read Blogs**: Users can browse and read blogs created by others.
 - **Update Blogs**: Users can update their existing blogs.
+- **Delete Blogs**: Users can delete their existing blogs.
 
 ## Tech Stack
 
