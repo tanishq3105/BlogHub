@@ -201,3 +201,21 @@ blogRouter.get('/bulk', async (c) => {
 
   return c.json(posts);
 })
+
+blogRouter.delete('/delete',async(c)=>{
+  const prisma= new PrismaClient({
+    datasourceUrl:c.env?.DATABASE_URL
+  }).$extends(withAccelerate());
+  const body=await c.req.json();
+  await prisma.post.delete({
+    where:{
+      id:body.id
+    }
+  })
+
+  return c.text('post deleted');
+
+
+
+
+})
