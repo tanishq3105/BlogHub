@@ -39,7 +39,7 @@ export const Authin = () => {
 
           <div className="text-l text-slate-400">
             Don't have an account?
-            <a href="/signup" className="text-slate-600">
+            <a href="/signup" className="text-indigo-600">
               Sign Up
             </a>
           </div>
@@ -65,7 +65,7 @@ export const Authin = () => {
               }))}}
             />
             <div className="flex justify-center mt-5">
-              <button className="flex items-center justify-center border border-black h-10 px-32 bg-black text-white rounded-sm"
+              <button className="flex items-center justify-center border border-black h-10 px-32 bg-indigo-600 text-white border-none hover:bg-indigo-700 font-semibold rounded-md"
               onClick={handleSubmit}>
                 Sign In
               </button>

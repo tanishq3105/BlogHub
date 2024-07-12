@@ -13,7 +13,7 @@ export const BlogPage = ({
 }: BlogPageProp) => {
   return (
     <div className="flex h-full ml-5">
-      <div className="w-3/5 pt-4 mx-10">
+      <div className="w-3/5 pt-4 mx-32">
         <div className="font-bold text-4xl pt-3">
          {title}
         </div>

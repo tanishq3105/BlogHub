@@ -7,6 +7,7 @@ interface BlogCardProps {
   publishedDate: string;
   id:number;
   authorId?:string;
+  link:string
 }
 
 
@@ -16,9 +17,10 @@ export const BlogCard = ({
   content,
   publishedDate,
   id,
+  link,
 }: BlogCardProps) => {
   return (
-    <Link to={`/blog/${id}`}>
+    <Link to={`/${link}/${id}`}>
     <div className="border-b-2 border-grey-300 pb-4 w-screen max-w-screen-lg cursor-pointer pt-1">
         <div className="flex">
         <div className="flex justify-center flex-col">

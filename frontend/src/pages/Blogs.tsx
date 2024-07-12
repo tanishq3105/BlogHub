@@ -15,7 +15,7 @@ export const Blogs=()=>{
     }
     return (
         <div> 
-        <Appbar button="+ New Blog" onClick={()=>{navigate('/create')}}/>
+        <Appbar/>
         <div className="flex justify-center pb-4 ">
         <div >
             {blogs.map(blog=>(
@@ -26,6 +26,7 @@ export const Blogs=()=>{
                 content={blog.content}
                 publishedDate={blog.publishedDate}
                 id={blog.id}
+                link="blog"
             />))}
             
         </div>
