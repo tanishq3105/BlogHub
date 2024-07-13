@@ -85,6 +85,7 @@ export const useMyblogs=({id}:{id:string})=>{
 export const useDetails=()=>{
     const token=localStorage.getItem('token');
     const [id,setId]=useState('');
+    const [name,setName]=useState('');
     useEffect(()=>{
 
         axios.get(`${DB_URL}/api/v1/user/user-details`,{
@@ -93,13 +94,14 @@ export const useDetails=()=>{
             }
         })
         .then(response=>{
-            
-            setId(response.data);
+            console.log(response.data);
+            setId(response.data.name[0].id);
+            setName(response.data.name[0].name);
         })
     },[])
 
     return{
-        id
+        id,name
     } 
         
 

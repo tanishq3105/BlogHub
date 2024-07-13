@@ -2,11 +2,10 @@ import { Appbar } from "./Appbar"
 import { BlogCard } from "./BlogCard"
 import { useMyblogs } from "../hooks"
 import { Loader } from "./Loader";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 export const MyBlogs=()=>{
     const {id}=useParams();
     const {loading,myBlog}=useMyblogs({id:id || ''});
-    const navigate=useNavigate();
     if(loading){
         return(
             <div>
