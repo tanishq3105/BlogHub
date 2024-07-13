@@ -2,7 +2,7 @@ import { SignupType } from "@basicdev04/common-app";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DB_URL } from "../config";
+import { DB_URL} from "../config";
 import { ClipLoader } from "react-spinners"; // Import the ClipLoader component
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; 
