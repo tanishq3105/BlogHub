@@ -3,7 +3,7 @@ import { Appbar } from "./Appbar";
 import { useState } from "react";
 import { CreatePostType } from "@basicdev04/common-app";
 import { useNavigate } from "react-router-dom";
-import { DB_URL } from "../config";
+
 
 export const Create = () => {
   const [inputs, setInputs] = useState<CreatePostType>({
@@ -14,7 +14,7 @@ export const Create = () => {
   const HandleClick = async () => {
     try {
       const response = await axios.post(
-        `${DB_URL}/api/v1/blog/create`,
+        `${process.env.REACT_APP_DB_URL}/api/v1/blog/create`,
         {
           title: inputs.title,
           content: inputs.content,

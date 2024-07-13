@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Appbar } from "../components/Appbar";
 import { useBlog } from "../hooks";
 import { Loader } from "../components/Loader";
-import { DB_URL } from "../config";
+
 import axios from "axios";
 import { CreatePostType } from "@basicdev04/common-app";
 import { useState, useEffect } from "react";
@@ -28,7 +28,7 @@ export const UpdateBlogs = () => {
   const handleClick = async () => {
     try {
       const response = await axios.put(
-        `${DB_URL}/api/v1/blog/update`,
+        `${process.env.REACT_APP_DB_URL}/api/v1/blog/update`,
         {
           id,
           title:inputs.title,
@@ -54,7 +54,7 @@ export const UpdateBlogs = () => {
         try{
           const response = await axios({
             method: 'delete',
-            url: `${DB_URL}/api/v1/blog/delete`,
+            url: `${process.env.REACT_APP_DB_URL}/api/v1/blog/delete`,
             headers: {
               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },

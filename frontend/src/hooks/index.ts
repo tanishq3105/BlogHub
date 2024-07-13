@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { DB_URL } from "../config";
+
+
 
 interface Blog{
     content:string,
@@ -17,8 +18,8 @@ export const useBlogs=()=>{
     const [blogs,setBlogs]=useState<Blog[]>([]);
 
     useEffect(()=>{
-
-        axios.get(`${DB_URL}/api/v1/blog/bulk`,{
+        console.log(process.env.REACT_APP_DB_URL)
+        axios.get(`${process.env.REACT_APP_DB_URL}/api/v1/blog/bulk`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }
@@ -41,7 +42,7 @@ export const useBlog=({id}:{id:string})=>{
 
     useEffect(()=>{
 
-        axios.get(`${DB_URL}/api/v1/blog/post/${id}`,{
+        axios.get(`${process.env.REACT_APP_DB_URL}/api/v1/blog/post/${id}`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }
@@ -65,7 +66,7 @@ export const useMyblogs=({id}:{id:string})=>{
 
     useEffect(()=>{
 
-        axios.get(`${DB_URL}/api/v1/blog/myblogs/${id}`,{
+        axios.get(`${process.env.REACT_APP_DB_URL}/api/v1/blog/myblogs/${id}`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }
@@ -88,7 +89,7 @@ export const useDetails=()=>{
     const [name,setName]=useState('');
     useEffect(()=>{
 
-        axios.get(`${DB_URL}/api/v1/user/user-details`,{
+        axios.get(`${process.env.REACT_APP_DB_URL}/api/v1/user/user-details`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }

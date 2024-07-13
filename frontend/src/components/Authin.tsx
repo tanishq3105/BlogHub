@@ -2,12 +2,10 @@ import { SignupType } from "@basicdev04/common-app";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DB_URL} from "../config";
 import { ClipLoader } from "react-spinners"; // Import the ClipLoader component
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'; 
 
-console.log(DB_URL);
 
 export const Authin = () => {
   const [postInputs, setPostInputs] = useState<SignupType>({
@@ -21,7 +19,7 @@ export const Authin = () => {
   const handleSubmit = async () => {
     setLoading(true); 
     try {
-      const response = await axios.post(DB_URL + '/api/v1/user/signin', {
+      const response = await axios.post(process.env.REACT_APP_DB_URL + '/api/v1/user/signin', {
         name: postInputs.name,
         email: postInputs.email,
         password: postInputs.password

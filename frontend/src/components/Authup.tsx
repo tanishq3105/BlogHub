@@ -2,9 +2,7 @@ import { SignupType } from "@basicdev04/common-app";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DB_URL } from "../config";
 
-console.log(DB_URL);
 export const Authup = () => {
   const [postInputs,setPostInputs]=useState<SignupType>({
     name:"",
@@ -15,7 +13,7 @@ export const Authup = () => {
   const navigate=useNavigate();
   const handleSubmit=async()=>{
     try {
-        const response=await axios.post(DB_URL+'/api/v1/user/signup',{
+        const response=await axios.post(process.env.REACT_APP_DB_URL+'/api/v1/user/signup',{
             name:postInputs.name,
             email:postInputs.email,
             password:postInputs.password
