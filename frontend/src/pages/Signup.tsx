@@ -1,7 +1,17 @@
 import { Quote } from "../components/Quote"
 import { Authup } from "../components/Authup"
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const Signup=()=>{
+  const navigate=useNavigate();
+  const token=localStorage.getItem('token');
+  useEffect(()=>{
+    if(token)
+        {
+            navigate('/blogs');
+        }
+},[])
     return (
         <div className="bg-customDark md:grid grid-cols-2">
   <div className="flex justify-center items-center h-screen md:h-auto">
