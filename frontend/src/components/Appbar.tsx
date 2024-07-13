@@ -73,7 +73,7 @@ export const Appbar = () => {
           )}
         </div>
       </div>
-      <div className="md:hidden flex items-center">
+      <div className="md:hidden flex items-center text-customGrey">
         <button onClick={toggleMobileMenu} className="focus:outline-none">
           <svg
             xmlns="http://www.w3.org/2000/svg"
