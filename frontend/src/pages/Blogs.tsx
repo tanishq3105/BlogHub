@@ -2,10 +2,10 @@ import { Appbar } from "../components/Appbar"
 import { BlogCard } from "../components/BlogCard"
 import { useBlogs } from "../hooks"
 import { Loader } from "../components/Loader";
-import { useNavigate } from "react-router-dom";
+
 export const Blogs=()=>{
     const {loading,blogs}=useBlogs();
-    const navigate=useNavigate();
+    
     if(loading){
         return(
             <div>
@@ -16,7 +16,7 @@ export const Blogs=()=>{
     return (
         <div> 
         <Appbar/>
-        <div className="flex justify-center pb-4 ">
+        <div className="flex justify-center pb-4 bg-customDark ">
         <div >
             {blogs.map(blog=>(
                 <BlogCard

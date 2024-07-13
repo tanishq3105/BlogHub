@@ -64,7 +64,7 @@ export const UpdateBlogs = () => {
           });
       
               if (response.status === 200) {
-                navigate("/blogs");
+                navigate(-1);
               } else {
                 console.error("Unexpected status code:", response.status);
               }
@@ -90,7 +90,7 @@ export const UpdateBlogs = () => {
           <input
             type="text"
             placeholder="Title"
-            className="text-5xl border-none outline-none w-full"
+            className="text-5xl border-none outline-none w-full text-customDarkBlue bg-customDark"
             value={inputs.title}
             onChange={(e) => {
               setInputs((c) => ({
@@ -103,7 +103,7 @@ export const UpdateBlogs = () => {
         <div className="text-2xl font-thin">
           <textarea
             placeholder="Tell your story..."
-            className="w-full border-none outline-none resize-none min-h-screen overflow-hidden"
+            className="w-full border-none outline-none resize-none min-h-screen overflow-hidden text-white bg-customDark"
             value={inputs.content}
             onChange={(e) => {
               setInputs((c) => ({
@@ -115,7 +115,7 @@ export const UpdateBlogs = () => {
         </div>
         <div className="fixed bottom-0 right-0 m-4 flex space-x-4">
     <button 
-      className="px-4 py-2 bg-indigo-600 text-white rounded-md" 
+      className="px-4 py-2 border border-customBlue hover:bg-customDarkBlue text-white rounded-md" 
       onClick={handleClick}
       >
       Publish

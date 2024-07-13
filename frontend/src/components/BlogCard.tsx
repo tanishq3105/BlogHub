@@ -21,37 +21,43 @@ export const BlogCard = ({
 }: BlogCardProps) => {
   return (
     <Link to={`/${link}/${id}`}>
-    <div className="border-b-2 border-grey-300 pb-4 w-screen max-w-screen-lg cursor-pointer pt-1">
+    <div className="border-b-2 border-customBlack pb-4 w-screen max-w-screen-lg cursor-pointer pt-1">
         <div className="flex">
         <div className="flex justify-center flex-col">
-            <Avatar author={authorName} size={5}/>
+            <Avatar author={authorName} size={20}/>
         </div>
-      <div className="font-lights pl-2 text-sm">
+      <div className="font-semibold pl-2 text-sm text-white">
         {authorName}
       </div>
-      <div  className="pl-2 font-thin text-xs flex flex-col justify-center text-slate-400">
+      <div  className="pl-2 font-thin text-xs flex flex-col justify-center text-customGrey">
       {publishedDate}
       </div>
         </div>
        
 
-      <div className="text-xl font-bold pt-1">
+      <div className="text-xl font-bold pt-1  text-customDarkBlue hover:text-customBlue">
         {title}
         </div>
 
-      <div className="font-thin text-md ">
+      <div className="font-thin text-md text-white">
         {content.slice(0, 100) + "..."}
         </div>
 
-      <div className="text-slate-500 text-sm font-thin pt-3">{`${Math.ceil(content.length / 100)} min read`}</div>
+      <div className="text-customGrey text-sm font-thin pt-3">{`${Math.ceil(content.length / 100)} min read`}</div>
 
     </div>
     </Link>
   );
 };
-export function Avatar({ author, size }: { author: string; size: number }) {
+
+interface AvatarProps {
+  author: string;
+  size: number;
+}
+
+export function Avatar({ author, size }: AvatarProps) {
   // Function to generate a deterministic color based on the author's name
-  const getColorFromName = (name: string) => {
+  const getColorFromName = (name: string): string => {
     const colors = [
       'bg-blue-500',
       'bg-red-500',
@@ -72,11 +78,13 @@ export function Avatar({ author, size }: { author: string; size: number }) {
   return (
     <div>
       <div
-      className={`relative inline-flex items-center justify-center w-${size} h-${size} overflow-hidden rounded-full ${avatarColorClass}`}
+        className={`relative inline-flex items-center justify-center overflow-hidden rounded-full ${avatarColorClass}`}
+        style={{ width: size, height: size }}
       >
         <span className="text-sm text-white">{first}</span>
       </div>
     </div>
   );
 }
+
 

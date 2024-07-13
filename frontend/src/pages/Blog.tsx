@@ -18,17 +18,15 @@ export const Blog = () => {
   return (
     <div>
       <Appbar/>
-      <div >
-            
-                <BlogPage
-                authorName={blog?.author.name || ''}
-                title={blog?.title || ''}
-                content={blog?.content || ''}
-                publishedDate={blog?.publishedDate || ''
-                }
-            />
-            
-        </div>
+      <div className="min-h-screen w-full bg-customDark">
+    <BlogPage
+        authorName={blog?.author.name || ''}
+        title={blog?.title || ''}
+        content={blog?.content || ''}
+        publishedDate={blog?.publishedDate || ''}
+    />
+</div>
+
     </div>
   );
 };

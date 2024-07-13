@@ -130,12 +130,26 @@ userRouter.post('/signup', async (c) => {
     }
   })
 
-  userRouter.get('/user-details',(c)=>{
+  userRouter.get('/user-details',async(c)=>{
 
+      const prisma=new PrismaClient({
+        datasourceUrl:c.env.DATABASE_URL
+      }).$extends(withAccelerate());
       const userId=c.get('userId');
+      const name=await prisma.user.findMany({
+        where:{
+          id:userId
+        },
+        select:{
+          id:true,
+          name:true
+        }
+      })
       if(!userId)
       {
         return c.json({msg:'userId not found'},404);
       }
-      return c.json(userId)
+      return c.json({
+        name
+      })
     })
