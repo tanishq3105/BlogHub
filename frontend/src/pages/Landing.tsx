@@ -13,7 +13,7 @@ export const Landing = () => {
                     </div>
                 </div>
                 <div className='flex flex-col justify-center pb-1'>
-                <a href="/signup" className="px-8 py-2.5 w-full bg-indigo-600 text-white text-center rounded-md shadow-md block sm:w-auto">
+                <a href="/signup" className="px-8 py-2.5 w-full bg-indigo-600 text-white text-center rounded-md shadow-md block sm:w-auto invisible md:visible">
                         Sign In
                     </a>
                 </div>

@@ -64,7 +64,7 @@ export const UpdateBlogs = () => {
           });
       
               if (response.status === 200) {
-                navigate("/blogs");
+                navigate(-1);
               } else {
                 console.error("Unexpected status code:", response.status);
               }

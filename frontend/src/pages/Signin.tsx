@@ -3,12 +3,14 @@ import { Quote } from "../components/Quote"
 
 export const Signin=()=>{
     return (
-        <div className="grid grid-cols-2">
-        <Authin></Authin>
-        <div className="invisible md:visible">
-        <Quote></Quote>
+        <div className="md:grid grid-cols-2">
+        <div className="flex justify-center items-center h-screen md:h-auto">
+          <Authin />
         </div>
-
-    </div>
+        <div className="hidden md:block">
+          <Quote />
+        </div>
+      </div>
+      
     )
 }
