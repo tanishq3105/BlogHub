@@ -1,1 +1,0 @@
-export const DB_URL="https://backend.tanishqkandpal-work.workers.dev"
