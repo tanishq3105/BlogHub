@@ -35,7 +35,7 @@ export const BlogCard = ({
         </div>
        
 
-      <div className="text-xl font-bold pt-1 text-customDarkBlue">
+      <div className="text-xl font-bold pt-1  text-customDarkBlue hover:text-customBlue">
         {title}
         </div>
 
