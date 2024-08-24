@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 
 interface Blog{
+    imageUrl: string;
     content:string,
     title:string,
     id:number,
@@ -12,13 +13,15 @@ interface Blog{
         name:string
     }
 }
-const token=localStorage.getItem('token');
+
+
 export const useBlogs=()=>{
+    const token=localStorage.getItem('token');
     const [loading,setLoading]=useState(true)
     const [blogs,setBlogs]=useState<Blog[]>([]);
 
     useEffect(()=>{
-        console.log(process.env.REACT_APP_DB_URL)
+       
         axios.get(`${process.env.REACT_APP_DB_URL}/api/v1/blog/bulk`,{
             headers:{
                 Authorization:`Bearer ${token}`
@@ -37,6 +40,7 @@ export const useBlogs=()=>{
 }
 
 export const useBlog=({id}:{id:string})=>{
+    const token=localStorage.getItem('token');
     const [loading,setLoading]=useState(true)
     const [blog,setBlog]=useState<Blog>();
 
@@ -61,6 +65,7 @@ export const useBlog=({id}:{id:string})=>{
 
 
 export const useMyblogs=({id}:{id:string})=>{
+    const token=localStorage.getItem('token');
     const [loading,setLoading]=useState(true)
     const [myBlog,setMyBlog]=useState<Blog []>([]);
 
