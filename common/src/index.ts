@@ -17,7 +17,7 @@ export type SigninType=z.infer<typeof signinInput>;
 
 export const createPostInput=z.object({
     title:string(),
-    content:string()
+    content:string(),
 })
 
 export type CreatePostType=z.infer<typeof createPostInput>;
