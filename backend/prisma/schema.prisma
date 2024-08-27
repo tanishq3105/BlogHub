@@ -27,6 +27,7 @@ model Post {
   content   String
   publishedDate String
   author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String    
+  authorId  String   
+  imageUrl   String
   
 }

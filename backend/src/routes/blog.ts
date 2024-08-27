@@ -21,23 +21,38 @@ blogRouter.use('/*', async (c, next) => {
   const jwt = c.req.header('Authorization') || "";
   if (!jwt) {
     c.status(401);
-    return c.json({ error: "jwt not found" });
+    return c.json({ error: "JWT not found" });
   }
+
   const token = jwt.split(' ')[1];
-  const payload = await verify(token, c.env.JWT_SECRET);
-  if (!payload) {
-    c.status(401);
-    return c.json({ error: "not verified" });
+  const secret =  c.env.JWT_SECRET;
+  console.log(secret);
+  if (!secret) {
+    c.status(500);
+    return c.json({ error: "JWT_SECRET is not defined" });
   }
 
-  if (typeof payload.id !== 'string') {
-    c.status(400); // Bad request
-    return c.json({ error: "Invalid token payload" });
-  }
+  try {
+    const payload = await verify(token, secret);
+    if (!payload) {
+      c.status(401);
+      return c.json({ error: "JWT verification failed" });
+    }
 
-  c.set('userId', payload.id);
-  await next();
+    if (typeof payload.id !== 'string') {
+      c.status(400); // Bad request
+      return c.json({ error: "Invalid token payload" });
+    }
+
+    c.set('userId', payload.id);
+    await next();
+  } catch (error) {
+    console.error('Error during JWT verification:', error);
+    c.status(500);
+    return c.json({ error: "Internal server error during JWT verification" });
+  }
 });
+
 
 blogRouter.post('/create', async (c) => {
   try {
@@ -78,7 +93,8 @@ blogRouter.post('/create', async (c) => {
         title: body.title,
         content: body.content,
         authorId: userId,
-        publishedDate: publishedDate  // Set the dynamically calculated date
+        publishedDate: publishedDate, 
+        imageUrl:body.imageUrl // Set the dynamically calculated date
       },
     });
 
@@ -142,6 +158,7 @@ blogRouter.get('/myblogs/:id', async (c) => {
       title: true,
       id: true,
       publishedDate:true,
+      imageUrl:true,
       author: {
         select: {
           name:true
@@ -180,27 +197,44 @@ blogRouter.put('/update', async (c) => {
   return c.text('updated post');
 });
 blogRouter.get('/bulk', async (c) => {
-  const prisma = new PrismaClient({
-    datasourceUrl: c.env?.DATABASE_URL,
-  }).$extends(withAccelerate());
+  try {
+    const filter=c.req.query('filter') || "";
+    const prisma = new PrismaClient({
+      datasourceUrl: c.env?.DATABASE_URL,
+    }).$extends(withAccelerate());
 
-  const posts = await prisma.post.findMany({
-    select: {
-      content: true,
-      title: true,
-      id: true,
-      authorId:true,
-      publishedDate:true,
-      author: {
-        select: {
-          name: true
-        }
-      }
-    }
-  });
+    const posts = await prisma.post.findMany({
+      where:{
+          title:{
+            contains:filter,
+            mode:'insensitive'
+          }
+      },
+      select: {
+        content: true,
+        title: true,
+        id: true,
+        authorId: true,
+        publishedDate: true,
+        imageUrl: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
 
-  return c.json(posts);
-})
+    // Return the posts if the query is successful
+    return c.json({ success: true, posts });
+
+  } catch (error) {
+    // Handle the error gracefully and return an appropriate response
+    console.error('Error fetching posts:', error);
+    return c.json({ success: false, message: 'Failed to fetch posts.' }, 500);
+  }
+});
+
 
 blogRouter.delete('/delete',async(c)=>{
   const prisma= new PrismaClient({
