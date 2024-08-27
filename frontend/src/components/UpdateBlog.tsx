@@ -7,6 +7,7 @@ import { CreatePostType } from "@basicdev04/common-app";
 import { useState, useEffect } from "react";
 import { useQuill } from "react-quilljs";
 
+
 export const UpdateBlogs = () => {
   const { id } = useParams();
   const { loading, blog } = useBlog({ id: id || "" });
