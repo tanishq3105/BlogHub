@@ -9,6 +9,7 @@ import { CreateBlog } from './pages/CreateBlog';
 import {  Userblogs } from './pages/Userblogs';
 import { Landing } from './pages/Landing';
 import { Update } from './pages/Update';
+import { Check } from './components/Check';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/create' element={<CreateBlog/>}></Route>
         <Route path='/userblogs/:id' element={<Userblogs/>}/>
         <Route path='/update/:id' element={<Update/>}/>
+        <Route path='/check' element={<Check/>}/>
 
       </Routes>
     </BrowserRouter>

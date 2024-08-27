@@ -4,10 +4,9 @@ import { Appbar } from "../components/Appbar";
 import { BlogCard } from "../components/BlogCard";
 import { useBlogs } from "../hooks";
 import { Loader } from "../components/Loader";
-import { Search } from '../components/Search';
+import { Search } from './Search';
 
-
-export const Blogs = () => {
+export const Check = () => {
     
     const[input, setInput]=useState<string|undefined>(undefined);
     const { loading, blogs } = useBlogs(input);
@@ -19,7 +18,6 @@ export const Blogs = () => {
         setInput(e.target.value);
       }, 300);
     }
-    
 
     useEffect(() => {
         const checkToken = () => {
@@ -66,7 +64,7 @@ export const Blogs = () => {
             </div>
 
             {/* Blog cards */}
-            <div className=" pb-4 bg-customDark">
+            <div className="flex justify-center pb-4 bg-customDark">
                 <div>
                     {blogs.map(blog => (
                         <BlogCard

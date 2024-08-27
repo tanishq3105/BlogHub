@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Avatar } from "./BlogCard";
 
 interface BlogPageProp {
@@ -13,6 +14,11 @@ export const BlogPage = ({
   content,
   publishedDate,
 }: BlogPageProp) => {
+  const ref=useRef<HTMLDivElement>(null);
+  useEffect(()=>{
+    if(ref.current!==null)
+    ref.current.innerHTML=content;
+  },[])
   return (
     <div className="flex flex-col lg:flex-row h-full mx-4 md:mx-8 lg:mx-32">
       <div className="lg:w-4/5 pt-4">
@@ -22,8 +28,7 @@ export const BlogPage = ({
         <div className="text-sm text-slate-500 pt-2">
           {publishedDate}
         </div>
-        <div className="pt-3 text-lg md:text-xl text-white">
-          {content}
+        <div className="pt-3 text-lg md:text-xl text-white" ref={ref}>
         </div>
       </div>
 

@@ -5,11 +5,11 @@ interface BlogCardProps {
   title: string;
   content: string;
   publishedDate: string;
-  id:number;
-  authorId?:string;
-  link:string
+  id: number;
+  authorId?: string;
+  link: string;
+  imageUrl: string;
 }
-
 
 export const BlogCard = ({
   authorName,
@@ -18,34 +18,56 @@ export const BlogCard = ({
   publishedDate,
   id,
   link,
+  imageUrl,
 }: BlogCardProps) => {
+  function stripHtml(html: string) {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  }
+
   return (
     <Link to={`/${link}/${id}`}>
-    <div className="border-b-2 border-customBlack pb-4 w-screen max-w-screen-lg cursor-pointer pt-1">
-        <div className="flex">
-        <div className="flex justify-center flex-col">
-            <Avatar author={authorName} size={20}/>
+      <div className="border-b-2 border-customBlack pb-4 w-full max-w-screen-lg cursor-pointer pt-1 mx-auto">
+        {/* Flex container for aligning content and image */}
+        <div className="flex justify-between items-center px-4 md:px-0">
+          {/* Left side: Text content */}
+          <div className="flex-1 pr-4">
+            <div className="flex items-center mb-2">
+              <div className="flex justify-center flex-col">
+                <Avatar author={authorName} size={20} />
+              </div>
+              <div className="font-semibold pl-2 text-xs font-thin md:text-sm text-white ">
+                {authorName}
+              </div>
+              <div className="pl-2 font-thin text-sm flex flex-col justify-center text-customGrey">
+                {publishedDate}
+              </div>
+            </div>
+
+            <div className="text-xl md:text-2xl font-bold pt-1 text-customDarkBlue hover:text-customBlue">
+              {title}
+            </div>
+            <div className="font-thin text-md md:text-lg text-white">
+              {stripHtml(content).slice(0, 100) + "..."}
+            </div>
+            <div className="text-customGrey text-sm md:text-md font-thin pt-3">{`${Math.ceil(
+              stripHtml(content).length / 100
+            )} min read`}</div>
+          </div>
+
+          {/* Right side: Image */}
+          <div className="flex-shrink-0">
+            <div className="h-[120px] w-[200px] md:h-[170px] md:w-[300px] border text-white text-sm">
+              <img
+                src={imageUrl}
+                alt="Blog Image"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
         </div>
-      <div className="font-semibold pl-2 text-sm text-white">
-        {authorName}
       </div>
-      <div  className="pl-2 font-thin text-xs flex flex-col justify-center text-customGrey">
-      {publishedDate}
-      </div>
-        </div>
-       
-
-      <div className="text-xl font-bold pt-1  text-customDarkBlue hover:text-customBlue">
-        {title}
-        </div>
-
-      <div className="font-thin text-md text-white">
-        {content.slice(0, 100) + "..."}
-        </div>
-
-      <div className="text-customGrey text-sm font-thin pt-3">{`${Math.ceil(content.length / 100)} min read`}</div>
-
-    </div>
     </Link>
   );
 };
@@ -56,18 +78,16 @@ interface AvatarProps {
 }
 
 export function Avatar({ author, size }: AvatarProps) {
-  // Function to generate a deterministic color based on the author's name
   const getColorFromName = (name: string): string => {
     const colors = [
-      'bg-blue-500',
-      'bg-red-500',
-      'bg-green-500',
-      'bg-yellow-500',
-      'bg-purple-500',
-      'bg-indigo-500',
-      'bg-pink-500',
+      "bg-blue-500",
+      "bg-red-500",
+      "bg-green-500",
+      "bg-yellow-500",
+      "bg-purple-500",
+      "bg-indigo-500",
+      "bg-pink-500",
     ];
-    // Use a deterministic way to select a color based on the author's name
     const index = name.length % colors.length;
     return colors[index];
   };
@@ -86,5 +106,3 @@ export function Avatar({ author, size }: AvatarProps) {
     </div>
   );
 }
-
-

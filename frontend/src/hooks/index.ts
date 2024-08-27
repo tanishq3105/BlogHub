@@ -15,24 +15,23 @@ interface Blog{
 }
 
 
-export const useBlogs=()=>{
+export const useBlogs=(input:string|undefined)=>{
     const token=localStorage.getItem('token');
     const [loading,setLoading]=useState(true)
     const [blogs,setBlogs]=useState<Blog[]>([]);
 
     useEffect(()=>{
        
-        axios.get(`${process.env.REACT_APP_DB_URL}/api/v1/blog/bulk`,{
+        axios.get(`${process.env.REACT_APP_DB_URL}/api/v1/blog/bulk?filter=${input?input:' '}`,{
             headers:{
                 Authorization:`Bearer ${token}`
             }
         })
         .then(response=>{
-            console.log(response.data)
-            setBlogs(response.data);
+            setBlogs(response.data.posts);
             setLoading(false);
         })
-    },[])
+    },[input])
 
     return{
         loading,blogs

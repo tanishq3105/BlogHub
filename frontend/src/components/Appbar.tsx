@@ -1,12 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDetails } from "../hooks";
 import { Avatar } from "./BlogCard";
 import { Link } from "react-router-dom";
 
-export const Appbar = () => {
+const AppbarComponent: React.FC = () => {
   const navigate = useNavigate();
-  const {id,name} = useDetails();
+  const { id, name } = useDetails();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -23,14 +23,18 @@ export const Appbar = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-
   return (
     <div className="flex items-center justify-between p-4 sm:px-8 sticky top-0 bg-customDarkD z-50">
-      <div className="font-bold cursor-pointer text-2xl text-customBlue">
-        <Link to="/blogs">Blog Hub</Link>
+      <div className="flex gap-10">
+        <div className="font-bold cursor-pointer text-2xl text-customBlue">
+          <Link to="/blogs">Blog Hub</Link>
+        </div>
       </div>
       <div className="hidden md:flex space-x-4 items-center">
-        <Link to="/create" className="flex items-center hover:text-customDarkBlue">
+        <Link
+          to="/create"
+          className="flex items-center hover:text-customDarkBlue"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -121,3 +125,8 @@ export const Appbar = () => {
     </div>
   );
 };
+
+// Memoize the Appbar component
+const Appbar = React.memo(AppbarComponent);
+
+export { Appbar };

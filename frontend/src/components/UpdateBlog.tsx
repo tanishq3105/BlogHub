@@ -5,6 +5,7 @@ import { Loader } from "../components/Loader";
 import axios from "axios";
 import { CreatePostType } from "@basicdev04/common-app";
 import { useState, useEffect } from "react";
+import { useQuill } from "react-quilljs";
 
 export const UpdateBlogs = () => {
   const { id } = useParams();
@@ -13,8 +14,8 @@ export const UpdateBlogs = () => {
     title: "",
     content: "",
   });
+  const {quill, quillRef}=useQuill();
   const navigate = useNavigate();
-
   useEffect(() => {
     if (blog) {
       setInputs({
@@ -23,6 +24,19 @@ export const UpdateBlogs = () => {
       });
     }
   }, [blog]);
+  useEffect(()=>{
+    if(quill)
+    {
+      quill.on('text-change',()=>{
+        setInputs((c)=>({
+          ...c,
+          content:quill.root.innerHTML,
+        }))
+      })
+      quill.clipboard.dangerouslyPasteHTML(inputs.content);
+      
+    }
+  },[quill])
 
   const handleClick = async () => {
     try {
@@ -86,8 +100,9 @@ export const UpdateBlogs = () => {
       <Appbar />
       <div className="mx-4 md:mx-16 lg:mx-32">
         <div className="flex items-center mb-4">
-          <div className="border-l-4 border-gray-300 h-12 mr-4"></div>
-          <textarea
+          <div className="border-l-4 border-gray-300 h-12 mr-4 "></div>
+          <input
+          type="text"
             placeholder="Title"
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl border-none outline-none w-full bg-customDark text-customDarkBlue"
             value={inputs.title}
@@ -100,17 +115,9 @@ export const UpdateBlogs = () => {
           />
         </div>
         <div className="text-lg sm:text-xl md:text-2xl font-thin">
-          <textarea
-            placeholder="Tell your story..."
-            className="w-full border-none outline-none resize-none min-h-screen overflow-hidden bg-customDark text-white"
-            value={inputs.content}
-            onChange={(e) => {
-              setInputs((c) => ({
-                ...c,
-                content: e.target.value,
-              }));
-            }}
-          />
+          <div style={{height:"70vh"}} className="text-customGrey">
+            <div ref={quillRef} />
+          </div>
         </div>
         <div className="fixed bottom-0 right-0 m-4 flex space-x-4">
           <button
