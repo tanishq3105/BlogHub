@@ -9,5 +9,10 @@ export default defineConfig(({ mode }) => {
       'process.env.REACT_APP_DB_URL': JSON.stringify(env.REACT_APP_DB_URL)
     },
     plugins: [react()],
+
+    optimizeDeps:{
+      include: ['@basicdev04/common-app'],
+
+    }
   }
 })
