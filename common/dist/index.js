@@ -1,21 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.updatePostInput = exports.createPostInput = exports.signinInput = exports.signupInput = void 0;
-const zod_1 = require("zod");
-exports.signupInput = zod_1.z.object({
-    email: zod_1.z.string().email(),
-    name: zod_1.z.string().optional(),
-    password: zod_1.z.string()
+import { string, z } from "zod";
+export const signupInput = z.object({
+    email: z.string().email(),
+    name: z.string().optional(),
+    password: z.string()
 });
-exports.signinInput = zod_1.z.object({
-    email: zod_1.z.string().email(),
-    password: zod_1.z.string()
+export const signinInput = z.object({
+    email: z.string().email(),
+    password: z.string()
 });
-exports.createPostInput = zod_1.z.object({
-    title: (0, zod_1.string)(),
-    content: (0, zod_1.string)()
+export const createPostInput = z.object({
+    title: string(),
+    content: string(),
 });
-exports.updatePostInput = zod_1.z.object({
-    title: (0, zod_1.string)(),
-    content: (0, zod_1.string)()
+export const updatePostInput = z.object({
+    title: string(),
+    content: string()
 });
