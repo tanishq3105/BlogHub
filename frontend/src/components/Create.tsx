@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { Appbar } from "./Appbar";
-import { CreatePostType } from "@basicdev04/common-app";
+import { CreatePostType } from "../../../common/dist";
 import { useQuill } from "react-quilljs";
 import 'quill/dist/quill.snow.css';
 import { Thumbnail } from "./Thumbnail";

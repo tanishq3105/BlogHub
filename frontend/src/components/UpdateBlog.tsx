@@ -3,7 +3,7 @@ import { Appbar } from "../components/Appbar";
 import { useBlog } from "../hooks";
 import { Loader } from "../components/Loader";
 import axios from "axios";
-import { CreatePostType } from "@basicdev04/common-app";
+import { CreatePostType } from "../../../common/dist";
 import { useState, useEffect } from "react";
 import { useQuill } from "react-quilljs";
 
