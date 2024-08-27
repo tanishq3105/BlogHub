@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 
 import { Appbar } from "./Appbar";
-import { CreatePostType } from "@basicdev04/common-app";
+
 import { useQuill } from "react-quilljs";
 import 'quill/dist/quill.snow.css';
 import { Thumbnail } from "./Thumbnail";
+
+interface CreatePostType{
+  title:string,
+  content:string
+}
 
 export const Create = () => {
   const [inputs, setInputs] = useState<CreatePostType>({
