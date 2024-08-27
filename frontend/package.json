@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@basicdev04/common-app": "^1.0.0",
+    "@basicdev04/common-app": "^1.0.1",
     "@cloudinary/react": "^1.13.0",
     "@cloudinary/url-gen": "^1.20.0",
     "axios": "^1.7.2",
