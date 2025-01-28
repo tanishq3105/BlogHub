@@ -16,7 +16,7 @@ export const BlogCard = ({ post, link }: BlogCardProps) => {
 
   return (
     <Link to={link +'/' + post.id} className=" h-full">
-      <article className="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden w-[400px] sm:transition-all duration-300 ease-in-out sm:hover:scale-105 sm:hover:shadow-lg sm:hover:shadow-cyan-500/50 sm:hover:cursor-pointer h-full flex flex-col">
+      <article className="bg-gray-800 border border-gray-700 rounded-lg overflow-hidden w-[390px] sm:w-[400px] sm:transition-all duration-300 ease-in-out sm:hover:scale-105 sm:hover:shadow-lg sm:hover:shadow-cyan-500/50 sm:hover:cursor-pointer h-full flex flex-col">
         <div className="relative pb-[56.25%]">
           <img
             src={
