@@ -1,13 +1,17 @@
 import { BookOpen, Users, Bookmark } from 'lucide-react'
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 export const Home = () => {
   const navigate=useNavigate();
   const token=localStorage.getItem('token');
-  if(token){
-    navigate('/blogs')
-  }
+  useEffect(()=>{
+    if(token){
+      navigate('/blogs')
+    }
+  },[token,navigate])
+  
   const handleClick=()=>{
     if(token){
       navigate('/blogs');
