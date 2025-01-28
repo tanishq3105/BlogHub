@@ -7,8 +7,7 @@ import { useOnClickOutside } from 'usehooks-ts'
 import { useDispatch } from 'react-redux'
 import { update } from '../redux/features/search/searchSlice'
 import { Delete } from './Delete'
-
-export const AppBar = () => {
+ const AppBar = () => {
   const location = useLocation()
   const isHomePage = location.pathname === '/';
   const isAuthPage=location.pathname==='/signup'||location.pathname==='/signin';
@@ -244,3 +243,5 @@ export const AppBar = () => {
     </nav>
   )
 }
+
+export default AppBar

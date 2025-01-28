@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Home } from './pages/Home';
 import { Blogs } from './pages/Blogs';
 import { Profile } from './pages/Profile';
-import { AppBar } from './components/AppBar';
+import  AppBar  from './components/AppBar';
 import { Write } from './pages/Write';
 import { UpdateBlogs } from './pages/Update';
 import { SingleBlog } from './pages/SingleBlog';
