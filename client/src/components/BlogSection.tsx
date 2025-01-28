@@ -21,7 +21,7 @@ export const BlogSection = ({ title, posts, bookmarkedPost, className = '',link 
       {bookmarkedPost?.map((post) => (
         <BlogCard key={post.id} post={post.post} link={link} />
       ))}
-    </div>:<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    </div>:<div className="flex flex-col justify-center gap-8 md:grid grid-cols-2 lg:grid grid-cols-3">
       {posts?.map((post) => (
         <BlogCard key={post.id} post={post} link={link} />
       ))}
