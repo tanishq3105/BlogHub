@@ -4,8 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
   const navigate=useNavigate();
+  const token=localStorage.getItem('token');
+  if(token){
+    navigate('/blogs')
+  }
   const handleClick=()=>{
-    const token=localStorage.getItem('token');
     if(token){
       navigate('/blogs');
     }else{
