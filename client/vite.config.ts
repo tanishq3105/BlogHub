@@ -5,22 +5,14 @@ import commonjs from 'vite-plugin-commonjs'
 export default defineConfig({
   plugins: [
     react(),
-    commonjs(), // Ensures CommonJS compatibility
+    commonjs() // Added to handle CommonJS modules
   ],
   optimizeDeps: {
-    include: ['react-quilljs', 'quill'], // Pre-bundle these dependencies
-    exclude: ['@types/react'], // Ensure no conflicts
+    include: ['react-quilljs', 'quill'], // Ensure these libraries are optimized by Vite
   },
   build: {
     commonjsOptions: {
-      include: [/node_modules/], // Includes all node_modules in CommonJS handling
-      transformMixedEsModules: true, // Enables proper handling of mixed ESM and CommonJS modules
-    },
-  },
-  resolve: {
-    alias: {
-      // Optional: Alias Quill to ensure it points to the ESM version
-      quill: 'quill/dist/quill.js',
+      include: [/react-quilljs/, /node_modules/], // Include react-quilljs in the commonjs handling
     },
   },
 })
