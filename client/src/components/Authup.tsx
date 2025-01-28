@@ -64,7 +64,7 @@ export const Authup = () => {
                 href="/signin" 
                 className="text-cyan-400 hover:text-cyan-300 transition-colors"
               >
-                Sign Up
+                Sign In
               </a>
             </p>
 
